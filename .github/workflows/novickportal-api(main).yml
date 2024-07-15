@@ -6,7 +6,7 @@ name: Build and deploy Java project to Azure Function App - novickportal-api
 on:
   push:
     branches:
-      - Development
+      - main
   workflow_dispatch:
 
 env:
@@ -49,7 +49,7 @@ jobs:
         id: fa
         with:
           app-name: 'novickportal-api'
-          slot-name: 'development'
+          slot-name: 'production'
           package: '${{ env.PACKAGE_DIRECTORY }}'
           respect-pom-xml: true
           
