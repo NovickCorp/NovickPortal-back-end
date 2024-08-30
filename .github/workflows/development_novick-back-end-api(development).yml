@@ -12,7 +12,7 @@ on:
 env:
   AZURE_FUNCTIONAPP_NAME: novick-back-end-api # set this to your function app name on Azure
   POM_XML_DIRECTORY: '.' # set this to the directory which contains pom.xml file
-  PACKAGE_DIRECTORY: './target/azure-functions/novick-back-end-api' # set this to the directory which contains pom.xml file
+  PACKAGE_DIRECTORY: 'target/azure-functions/novick-back-end-api' # set this to the directory which contains pom.xml file
   JAVA_VERSION: '17' # set this to the java version to use
 
 jobs:
@@ -35,7 +35,7 @@ jobs:
       - name: 'Restore Project Dependencies Using Mvn'
         shell: pwsh
         run: |+
-          pushd './${{ env.PACKAGE_DIRECTORY }}'
+          pushd './${{ env.POM_XML_DIRECTORY }}'
           mvn clean package
           popd
       
