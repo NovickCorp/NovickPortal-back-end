@@ -11,7 +11,8 @@ on:
 
 env:
   AZURE_FUNCTIONAPP_NAME: novick-back-end-api # set this to your function app name on Azure
-  PACKAGE_DIRECTORY: '.' # set this to the directory which contains pom.xml file
+  POM_XML_DIRECTORY: '.' # set this to the directory which contains pom.xml file
+  PACKAGE_DIRECTORY: 'target/azure-functions/novick-back-end-api' # set this to the directory which contains pom.xml file
   JAVA_VERSION: '17' # set this to the java version to use
 
 jobs:
@@ -23,10 +24,12 @@ jobs:
     steps:
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@v4
+        with:
+          ssh-key: ${{ secrets.SSH_PRIVATE_KEY_GIT }}
 
       - name: Setup Java Sdk ${{ env.JAVA_VERSION }}
         uses: actions/setup-java@v1
-        with: |+
+        with: 
           java-version: ${{ env.JAVA_VERSION }}
 
       - name: 'Restore Project Dependencies Using Mvn'
@@ -47,7 +50,7 @@ jobs:
         uses: Azure/functions-action@v1
         id: fa
         with:
-          app-name: 'novick-back-end-api'
+          app-name: '${{ env.AZURE_FUNCTIONAPP_NAME }}'
           slot-name: 'Production'
           package: '${{ env.PACKAGE_DIRECTORY }}'
           respect-pom-xml: true
