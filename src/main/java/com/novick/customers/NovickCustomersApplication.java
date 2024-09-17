@@ -1,13 +1,13 @@
-package com.example.restservice;
+package com.novick.customers;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RestServiceApplication {
+public class NovickCustomersApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RestServiceApplication.class, args);
+		SpringApplication.run(NovickCustomersApplication.class, args);
 	}
 
 }
