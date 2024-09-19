@@ -47,11 +47,9 @@
 			<groupId>com.azure.spring</groupId>
 			<artifactId>spring-cloud-azure-starter-jdbc-mysql</artifactId>
 		</dependency>
-
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
+			<groupId>com.azure.spring</groupId>
+			<artifactId>spring-cloud-azure-starter-keyvault</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.mysql</groupId>
