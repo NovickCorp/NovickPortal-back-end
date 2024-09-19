@@ -4,8 +4,8 @@ spring:
       keyvault:
         secret:
           property-sources[0]:
-            endpoint: ${KEY_VAULT_ENDPOINT}
-          endpoint: ${KEY_VAULT_ENDPOINT}
+            endpoint: https://novickportal-db-vault.vault.azure.net/
+          endpoint: https://novickportal-db-vault.vault.azure.net/
           property-source-enabled: true
   profiles:
     active: dev
