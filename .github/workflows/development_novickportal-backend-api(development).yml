@@ -21,6 +21,12 @@ jobs:
         with:
           java-version: '21'
           distribution: 'microsoft'
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_DD4EBCEC03CA41EE93279DF783A2B77E }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_11E9A7A886144DA99877E2262B441160 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_9669A8A0FDAD4F9F95CAB25A873406C3 }}
 
       - name: Build with Maven
         run: mvn clean package
