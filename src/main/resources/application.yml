@@ -7,7 +7,7 @@ spring:
             name: novickportal-db-vault
             credential:
               managed-identity-enabled: true
-              client-id: fb30513e-f035-437e-9e00-ccb031796744
+              client-id: fb30513e-f035-437e-9e00-ccb031796744 #This is the Novick-portal-id
             endpoint: https://novickportal-db-vault.vault.azure.net/
           property-source-enabled: true
   profiles:
