@@ -19,6 +19,8 @@
       <env name="AZURE_MYSQL_URL" value="jdbc:mysql://novick-portal-db.privatelink.mysql.database.azure.com:3306/novick_portal_dev?serverTimezone=UTC&amp;useSSL=true&amp;requireSSL=false" />
       <env name="KEY_VAULT_ENDPOINT" value="https://novickportal-db-vault.vault.azure.net/" />
       <env name="KEY_VAULT_RESOURCE_GROUP" value="NovickPortal" />
+      <env name="AZURE_MYSQL_PASSWORD" value="45vE09LfY!K@rsspC^Wp" />
+      <env name="AZURE_MYSQL_USERNAME" value="NovickAdm" />
     </envs>
     <method v="2" />
   </configuration>

@@ -22,9 +22,6 @@ jobs:
           java-version: '21'
           distribution: 'microsoft'
 
-      - name: Login
-        run: az login
-
       - name: Build with Maven
         run: mvn clean package
 
