@@ -3,9 +3,13 @@ spring:
     azure:
       keyvault:
         secret:
+          credential:
+            managed-identity-enabled: true
+            client-id: fb30513e-f035-437e-9e00-ccb031796744
           property-sources[0]:
+            profile:
+              subscription-id: ad6acc79-29dc-48af-9575-526ab04ee95f
             endpoint: https://novickportal-db-vault.vault.azure.net/
-          endpoint: https://novickportal-db-vault.vault.azure.net/
           property-source-enabled: true
   profiles:
     active: dev
