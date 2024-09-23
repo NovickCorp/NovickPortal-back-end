@@ -1,22 +1,22 @@
 spring:
-  cloud:
-    azure:
-      keyvault:
-        secret:
-          property-sources[0]:
-            name: novickportal-db-vault
+  #cloud:
+    #azure:
+      #keyvault:
+        #secret:
+          #property-sources[0]:
+            #name: novickportal-db-vault
             #credential:
               #managed-identity-enabled: true
               #client-id: fb30513e-f035-437e-9e00-ccb031796744 #This is the Novick-portal-id
-            endpoint: https://novickportal-db-vault.vault.azure.net/
-          property-source-enabled: true
+            #endpoint: https://novickportal-db-vault.vault.azure.net/
+          #property-source-enabled: true
   profiles:
     active: dev
   application:
     name: novick-customers
   datasource:
-    password: ${datasource-password} #${AZURE_MYSQL_PASSWORD}
-    username: ${datasource-username} #${AZURE_MYSQL_USERNAME}
+    password: ${AZURE_MYSQL_PASSWORD} #${datasource-password}
+    username: ${AZURE_MYSQL_USERNAME} #${datasource-username}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     properties:
