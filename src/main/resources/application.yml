@@ -32,4 +32,5 @@ spring:
   sql:
     init:
       mode: never
-
+  jackson:
+    default-property-inclusion: non_null

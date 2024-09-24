@@ -1,4 +1,4 @@
 package com.novick.customers.landing.models;
 
-public class Footer {
+public class Copyright {
 }

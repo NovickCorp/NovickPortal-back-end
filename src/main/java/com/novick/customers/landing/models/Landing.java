@@ -4,9 +4,9 @@ public class Landing {
 
     private Header header;
     private MainContent mainContent;
-    private Footer footer;
+    private FooterData footer;
 
-    public Landing(Header header, MainContent mainContent, Footer footer) {
+    public Landing(Header header, MainContent mainContent, FooterData footer) {
         this.header = header;
         this.mainContent = mainContent;
         this.footer = footer;
@@ -20,7 +20,7 @@ public class Landing {
         return mainContent;
     }
 
-    public Footer getFooter() {
+    public FooterData getFooter() {
         return footer;
     }
 

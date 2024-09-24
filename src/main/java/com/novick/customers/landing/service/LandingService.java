@@ -1,8 +1,7 @@
 package com.novick.customers.landing.service;
 
-import com.novick.customers.landing.models.Header;
-import com.novick.customers.landing.models.HeaderLinks;
-import com.novick.customers.landing.models.Landing;
+import com.novick.customers.landing.entities.Footer;
+import com.novick.customers.landing.models.*;
 import com.novick.customers.landing.repositories.*;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +37,20 @@ public class LandingService {
         var headerLinks = this.headerLinksRepository.findAll().stream().map(HeaderLinks::new).toList();
         var header = new Header(headerEntity.get(0).getLogoImage(), headerEntity.get(0).getLogoHomeLink(), headerLinks);
 
-        return new Landing(header, null, null);
+        var promoSpace = this.promoSpaceRepository.findAll().stream().toList();
+        var newsEntity = this.newsRepository.findAll().stream().toList();
+
+        var mainContent = new MainContent(promoSpace, newsEntity);
+
+        var footerLinks = footerLinksRepository.findAll().stream().toList();
+        var footer = footerRepository.findAll().stream().toList().get(0);
+        var address = new Address(footer.getAddress(), footer.getCity(), footer.getState(), footer.getZipCode(), footer.getPhoneNumber());
+
+        var copyrightLinks = copyrightLinksRepository.findAll().stream().toList();
+        var terms = new Link(copyrightLinks.get(0).getText(), copyrightLinks.get(0).getUrl());
+        var tutorial = new Link(copyrightLinks.get(1).getText(), copyrightLinks.get(1).getUrl());
+
+        var footerData = new FooterData(footerLinks, terms, tutorial, footer.getCopyright(), footer.getLogoImage(), address);
+        return new Landing(header, mainContent, footerData);
     }
 }
