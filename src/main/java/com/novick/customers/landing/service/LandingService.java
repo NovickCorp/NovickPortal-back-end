@@ -3,8 +3,11 @@ package com.novick.customers.landing.service;
 import com.novick.customers.landing.entities.Footer;
 import com.novick.customers.landing.models.*;
 import com.novick.customers.landing.repositories.*;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -28,7 +31,9 @@ public class LandingService {
         this.copyrightLinksRepository = copyrightLinksRepository;
     }
 
+    @Cacheable("landing")
     public Landing landing() {
+        var now = LocalTime.now();
         var headerEntity = this.headerRepository.findAll();
          if (headerEntity.isEmpty()) {
              throw new IllegalStateException("No header found");
@@ -51,6 +56,8 @@ public class LandingService {
         var tutorial = new Link(copyrightLinks.get(1).getText(), copyrightLinks.get(1).getUrl());
 
         var footerData = new FooterData(footerLinks, terms, tutorial, footer.getCopyright(), footer.getLogoImage(), address);
+        var end = LocalTime.now();
+        System.out.println("Time: " + Duration.between(now, end).getNano() + " s");
         return new Landing(header, mainContent, footerData);
     }
 }

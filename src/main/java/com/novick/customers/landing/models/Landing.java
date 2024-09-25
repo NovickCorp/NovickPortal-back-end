@@ -24,4 +24,12 @@ public class Landing {
         return footer;
     }
 
+    @Override
+    public String toString() {
+        return "Landing{" +
+                "header=" + header +
+                ", mainContent=" + mainContent +
+                ", footer=" + footer +
+                '}';
+    }
 }
