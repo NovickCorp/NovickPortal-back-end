@@ -3,12 +3,12 @@ package com.novick.customers.landing.models;
 public class Landing {
 
     private Header header;
-    private MainContent dashboard;
+    private MainContent mainContent;
     private FooterData footer;
 
-    public Landing(Header header, MainContent dashboard, FooterData footer) {
+    public Landing(Header header, MainContent mainContent, FooterData footer) {
         this.header = header;
-        this.dashboard = dashboard;
+        this.mainContent = mainContent;
         this.footer = footer;
     }
 
@@ -16,8 +16,8 @@ public class Landing {
         return header;
     }
 
-    public MainContent getDashboard() {
-        return dashboard;
+    public MainContent getMainContent() {
+        return mainContent;
     }
 
     public FooterData getFooter() {
@@ -28,7 +28,7 @@ public class Landing {
     public String toString() {
         return "Landing{" +
                 "header=" + header +
-                ", dashboard=" + dashboard +
+                ", mainContent=" + mainContent +
                 ", footer=" + footer +
                 '}';
     }

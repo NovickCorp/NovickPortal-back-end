@@ -33,7 +33,6 @@ public class LandingService {
 
     @Cacheable("landing")
     public Landing landing() {
-        var now = LocalTime.now();
         var headerEntity = this.headerRepository.findAll();
          if (headerEntity.isEmpty()) {
              throw new IllegalStateException("No header found");
@@ -56,8 +55,7 @@ public class LandingService {
         var tutorial = new Link(copyrightLinks.get(1).getText(), copyrightLinks.get(1).getUrl());
 
         var footerData = new FooterData(footerLinks, terms, tutorial, footer.getCopyright(), footer.getLogoImage(), address);
-        var end = LocalTime.now();
-        System.out.println("Time: " + Duration.between(now, end).getNano() + " s");
+
         return new Landing(header, mainContent, footerData);
     }
 }
