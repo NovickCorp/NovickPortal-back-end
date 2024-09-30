@@ -15,7 +15,6 @@ public class LandingController {
         this.landingService = landingService;
     }
 
-    @CrossOrigin(origins = "https://nice-moss-05ee5c50f-53.eastus2.5.azurestaticapps.net,https://customerportal.novickcorp.com,http://localhost:3000")
     @GetMapping("/landing")
     public Landing landing() {
         return landingService.landing();
