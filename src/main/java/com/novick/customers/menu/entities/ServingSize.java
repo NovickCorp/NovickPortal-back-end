@@ -173,4 +173,13 @@ public class ServingSize {
     public void setAdditionalCredibilityValue(Double additionalCredibilityValue) {
         this.additionalCredibilityValue = additionalCredibilityValue;
     }
+
+    public int getCategory(String mealPattern) {
+        return switch (mealPattern) {
+            case "breakfast" -> getCategoryBreakfastId();
+            case "lunch", "supper" -> getCategoryLunchSupperId();
+            case "snack" -> getCategorySnackId();
+            default -> throw new IllegalStateException("Unexpected value: " + mealPattern);
+        };
+    }
 }

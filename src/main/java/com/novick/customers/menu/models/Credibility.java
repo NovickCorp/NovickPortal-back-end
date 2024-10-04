@@ -1,11 +1,20 @@
 package com.novick.customers.menu.models;
 
-import java.util.Objects;
+public class Credibility {
 
-public record Credibility(String category, double score) {
+    private String category;
+    private double score;
 
-    public Credibility {
-        Objects.requireNonNull(category);
+    public Credibility(String category, double value, double target) {
+        this.category = category;
+        this.score = target == 0.0 ? 1.0 : value / target;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public double getScore() {
+        return score;
+    }
 }
