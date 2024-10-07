@@ -139,7 +139,7 @@ public class CreditableTable {
     @Override
     public String toString() {
         return "CreditableTable{" +
-                "id=" + id +
+                "item=" + id +
                 ", categoryId=" + categoryId +
                 ", breakfastAgesOneToTwo=" + breakfastAgesOneToTwo +
                 ", breakfastAgesThreeToFive=" + breakfastAgesThreeToFive +

@@ -55,7 +55,7 @@ public class MenuBuilderController {
                                 entry -> entry.getValue()
                                         .stream()
                                         .filter(item -> hasCategory(item, mealPattern))
-                                        .map(item -> new Item(item.getItem(), item.getDescription(), Collections.emptyList())).toList()
+                                        .map(item -> new Item(item.getId(), item.getItem(), item.getDescription(), Collections.emptyList())).toList()
                         )
                 );
     }
@@ -102,7 +102,7 @@ public class MenuBuilderController {
                                 entry -> entry.getValue()
                                         .stream()
                                         .filter(item -> hasCategory(item, mealPattern) && Objects.nonNull(item.getMinimumViableServingSize()))
-                                        .map(item -> new Item(item.getItem(), item.getDescription(), getOptions(item, entry.getKey(), mealPattern, ageGroup))).toList()
+                                        .map(item -> new Item(item.getId(), item.getItem(), item.getDescription(), getOptions(item, entry.getKey(), mealPattern, ageGroup))).toList()
                         )
                 );
     }

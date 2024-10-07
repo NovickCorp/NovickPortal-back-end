@@ -2,7 +2,6 @@ package com.novick.customers.menu.service;
 
 import com.novick.customers.menu.entities.UnitOfMeasurement;
 import com.novick.customers.menu.repositories.UnitsOfMeasurementRepository;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;

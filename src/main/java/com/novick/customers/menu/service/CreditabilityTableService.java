@@ -2,7 +2,6 @@ package com.novick.customers.menu.service;
 
 import com.novick.customers.menu.entities.CreditableTable;
 import com.novick.customers.menu.repositories.CreditableTableRepository;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -150,7 +149,7 @@ public class CreditabilityTableService {
         var all = creditableTable();
         var table = all.stream().filter(category -> category.getCategoryId() == categoryId).findFirst();
         if (table.isEmpty()) {
-            throw new IllegalArgumentException("No credit table found for id " + categoryId);
+            throw new IllegalArgumentException("No credit table found for item " + categoryId);
         }
 
         var values = table.get();
@@ -180,6 +179,6 @@ public class CreditabilityTableService {
             };
         }
 
-        throw new IllegalArgumentException("No credit table found for id " + categoryId);
+        throw new IllegalArgumentException("No credit table found for item " + categoryId);
     }
 }
