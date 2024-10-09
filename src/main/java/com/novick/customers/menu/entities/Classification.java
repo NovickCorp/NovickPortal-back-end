@@ -14,6 +14,8 @@ public class Classification {
 
     private String name;
 
+    private String parameterName;
+
     public Integer getId() {
         return id;
     }
@@ -28,5 +30,13 @@ public class Classification {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getParameterName() {
+        return parameterName;
+    }
+
+    public void setParameterName(String parameterName) {
+        this.parameterName = parameterName;
     }
 }

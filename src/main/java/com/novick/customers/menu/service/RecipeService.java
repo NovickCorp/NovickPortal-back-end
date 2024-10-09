@@ -48,7 +48,7 @@ public final class RecipeService {
                                            .mealPattern(new ParameterValue(entity.getMealId(), mealsMap.get(entity.getMealId()).getName(), mealsMap.get(entity.getMealId()).getParameterName()))
                                            .ageGroup(new ParameterValue(entity.getAgeGroupId(), ageGroupsMap.get(entity.getAgeGroupId()).getName(), ageGroupsMap.get(entity.getAgeGroupId()).getParameterName()))
                                            .ingredients(ingredients.stream().map(i -> new IdValue(i.getServingSizesId(), servingSizes.get(i.getServingSizesId()).getOptionValue())).toList())
-                                           .classifications(classifications.stream().map(c -> classificationMap.get(c.getClassificationsId())).map(c2 -> new IdValue(c2.getId(), c2.getName())).toList())
+                                           .classifications(classifications.stream().map(c -> classificationMap.get(c.getClassificationsId())).map(c2 -> new ParameterValue(c2.getId(), c2.getName(), c2.getParameterName())).toList())
                                            .build();
                                })
                                .toList();
