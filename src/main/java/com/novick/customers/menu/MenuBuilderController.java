@@ -131,7 +131,7 @@ public class MenuBuilderController {
     }
 
     private Credibility getAdditionalCredibility(ServingSize servingSize, String mealPattern, String ageGroup, int count) {
-        if (!servingSize.getAdditionalCredibility() || !mealsService.mealMap().get(servingSize.getAdditionalCredibilityMealId()).getName().equalsIgnoreCase(mealPattern)) {
+        if (!servingSize.getAdditionalCredibility() || !mealsService.mealMap().get(servingSize.getAdditionalCredibilityMealId()).getParameterName().equals(mealPattern)) {
             return null;
         }
 

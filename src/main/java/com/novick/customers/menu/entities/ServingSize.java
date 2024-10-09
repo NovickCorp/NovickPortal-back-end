@@ -174,6 +174,10 @@ public class ServingSize {
         this.additionalCredibilityValue = additionalCredibilityValue;
     }
 
+    public String getOptionValue() {
+        return String.format("%s %s", item, description);
+    }
+
     public int getCategory(String mealPattern) {
         return switch (mealPattern) {
             case "breakfast" -> getCategoryBreakfastId();

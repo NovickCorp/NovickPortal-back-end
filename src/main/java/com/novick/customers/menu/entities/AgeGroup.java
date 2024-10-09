@@ -3,8 +3,8 @@ package com.novick.customers.menu.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "meals")
-public class Meal {
+@Table(name = "age_groups")
+public class AgeGroup {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

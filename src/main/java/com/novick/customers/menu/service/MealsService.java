@@ -3,6 +3,7 @@ package com.novick.customers.menu.service;
 import com.novick.customers.menu.entities.Meal;
 import com.novick.customers.menu.repositories.MealRepositorty;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,11 +20,11 @@ public class MealsService {
         this.mealRepositorty = mealRepositorty;
     }
 
+    @Cacheable("meals")
     public List<Meal> findAll() {
-        return mealRepositorty.findAll();
+        return mealRepositorty.findAll(Sort.by(Sort.Direction.ASC, "priority"));
     }
 
-    @Cacheable("meals")
     public Map<Integer, Meal> mealMap() {
         return findAll().stream().collect(Collectors.toMap(Meal::getId, Function.identity()));
     }
