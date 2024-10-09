@@ -4,6 +4,7 @@ import com.novick.customers.menu.entities.AgeGroup;
 import com.novick.customers.menu.entities.Classification;
 import com.novick.customers.menu.entities.Meal;
 import com.novick.customers.menu.entities.ServingSize;
+import com.novick.customers.menu.models.Ingredients;
 import com.novick.customers.menu.models.Recipe;
 import com.novick.customers.menu.repositories.RecipeClassificationRepository;
 import com.novick.customers.menu.repositories.RecipeRepository;
@@ -47,7 +48,7 @@ public final class RecipeService {
                                            .oid(entity.getOid())
                                            .mealPattern(new ParameterValue(entity.getMealId(), mealsMap.get(entity.getMealId()).getName(), mealsMap.get(entity.getMealId()).getParameterName()))
                                            .ageGroup(new ParameterValue(entity.getAgeGroupId(), ageGroupsMap.get(entity.getAgeGroupId()).getName(), ageGroupsMap.get(entity.getAgeGroupId()).getParameterName()))
-                                           .ingredients(ingredients.stream().map(i -> new IdValue(i.getServingSizesId(), servingSizes.get(i.getServingSizesId()).getOptionValue())).toList())
+                                           .ingredients(ingredients.stream().map(i -> new Ingredients(i.getServingSizesId(), servingSizes.get(i.getServingSizesId()).getOptionValue(), i.getSize(), i.getCreditabilityScore())).toList())
                                            .classifications(classifications.stream().map(c -> classificationMap.get(c.getClassificationsId())).map(c2 -> new ParameterValue(c2.getId(), c2.getName(), c2.getParameterName())).toList())
                                            .build();
                                })

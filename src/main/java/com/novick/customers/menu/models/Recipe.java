@@ -13,7 +13,7 @@ public final class Recipe {
     private final ParameterValue mealPattern;
     private final ParameterValue ageGroup;
     private final List<ParameterValue> classifications;
-    private final List<IdValue> ingredients;
+    private final List<Ingredients> ingredients;
 
     private Recipe(Builder builder) {
         this.id = builder.id;
@@ -49,7 +49,7 @@ public final class Recipe {
         return classifications;
     }
 
-    public List<IdValue> getIngredients() {
+    public List<Ingredients> getIngredients() {
         return ingredients;
     }
 
@@ -61,7 +61,7 @@ public final class Recipe {
         private ParameterValue mealPattern;
         private ParameterValue ageGroup;
         private List<ParameterValue> classifications;
-        private List<IdValue> ingredients;
+        private List<Ingredients> ingredients;
 
         public Builder(int id) {
             this.id = id;
@@ -92,7 +92,7 @@ public final class Recipe {
             return this;
         }
 
-        public Builder ingredients(List<IdValue> ingredients) {
+        public Builder ingredients(List<Ingredients> ingredients) {
             this.ingredients = List.copyOf(ingredients);
             return this;
         }

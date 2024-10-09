@@ -19,6 +19,12 @@ public class RecipeServingSize {
     @Column(nullable = false)
     private int numberOfItems;
 
+    @Column(nullable = false)
+    private String size;
+
+    @Column(nullable = false)
+    private double creditabilityScore;
+
     public Integer getId() {
         return id;
     }
@@ -49,5 +55,21 @@ public class RecipeServingSize {
 
     public void setNumberOfItems(int numberOfItems) {
         this.numberOfItems = numberOfItems;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public double getCreditabilityScore() {
+        return creditabilityScore;
+    }
+
+    public void setCreditabilityScore(double creditabilityScore) {
+        this.creditabilityScore = creditabilityScore;
     }
 }
