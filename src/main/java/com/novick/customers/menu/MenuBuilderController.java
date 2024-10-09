@@ -120,7 +120,7 @@ public class MenuBuilderController {
         var list = new ArrayList<Options>();
 
         while (size <= 2.0) {
-            System.out.println("value: " + value + " target: " + target + " score " + (value * 100.0 / target));
+            System.out.println("name: " + value + " target: " + target + " score " + (value * 100.0 / target));
             var alternative = getAdditionalCredibility(servingSize, mealPattern, ageGroup, count);
             var option = new Options(count++, String.format("%s %s", Arithmetic.toFractionString(size), unitsOfMeasurement.get(uomId)), new Credibility(category, size, target), alternative);
             list.add(option);

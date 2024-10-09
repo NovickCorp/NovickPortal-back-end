@@ -1,4 +1,4 @@
 package com.novick.customers.models;
 
-public record ParameterValue(int id, String value, String parameterName) {
+public record ParameterValue(int id, String name, String parameterName) {
 }
