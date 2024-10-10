@@ -17,13 +17,13 @@ public class RecipeServingSize {
     private int recipesId;
 
     @Column(nullable = false)
+    private int categoryId;
+
+    @Column(nullable = false)
     private int numberOfItems;
 
     @Column(nullable = false)
     private String size;
-
-    @Column(nullable = false)
-    private double creditabilityScore;
 
     public Integer getId() {
         return id;
@@ -49,6 +49,14 @@ public class RecipeServingSize {
         this.recipesId = recipesId;
     }
 
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
     public int getNumberOfItems() {
         return numberOfItems;
     }
@@ -63,13 +71,5 @@ public class RecipeServingSize {
 
     public void setSize(String size) {
         this.size = size;
-    }
-
-    public double getCreditabilityScore() {
-        return creditabilityScore;
-    }
-
-    public void setCreditabilityScore(double creditabilityScore) {
-        this.creditabilityScore = creditabilityScore;
     }
 }

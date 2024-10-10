@@ -5,43 +5,31 @@ import java.util.List;
 
 public class Category {
 
-    private List<Item> vegetables;
-    private List<Item> fruits;
-    private List<Item> milks;
-    private List<Item> grains;
-    private List<Item> mmas;
-    private List<Item> extras;
+    private int id;
+    private String name;
+    private double creditabilityScore;
+    private List<Ingredients> ingredients;
 
-    private Category() {
-        vegetables = new ArrayList<>();
-        fruits = new ArrayList<>();
-        milks = new ArrayList<>();
-        grains = new ArrayList<>();
-        mmas = new ArrayList<>();
-        extras = new ArrayList<>();
+    public Category(int id, String name, double creditabilityScore, List<Ingredients> ingredients) {
+        this.id = id;
+        this.name = name;
+        this.creditabilityScore = creditabilityScore;
+        this.ingredients = ingredients;
     }
 
-    public void addToVegetables(Item item) {
-        vegetables.add(item);
+    public int getId() {
+        return id;
     }
 
-    public void addToFruits(Item item) {
-        fruits.add(item);
+    public String getName() {
+        return name;
     }
 
-    public void addToMilks(Item item) {
-        milks.add(item);
+    public double getCreditabilityScore() {
+        return creditabilityScore;
     }
 
-    public void addToGrains(Item item) {
-        grains.add(item);
-    }
-
-    public void addToMmas(Item item) {
-        mmas.add(item);
-    }
-
-    public void addToExtras(Item item) {
-        extras.add(item);
+    public List<Ingredients> getIngredients() {
+        return ingredients;
     }
 }

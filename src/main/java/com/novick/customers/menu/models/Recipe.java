@@ -1,6 +1,5 @@
 package com.novick.customers.menu.models;
 
-import com.novick.customers.models.IdValue;
 import com.novick.customers.models.ParameterValue;
 
 import java.util.List;
@@ -13,7 +12,7 @@ public final class Recipe {
     private final ParameterValue mealPattern;
     private final ParameterValue ageGroup;
     private final List<ParameterValue> classifications;
-    private final List<Ingredients> ingredients;
+    private final List<Category> categories;
 
     private Recipe(Builder builder) {
         this.id = builder.id;
@@ -22,7 +21,7 @@ public final class Recipe {
         this.mealPattern = builder.mealPattern;
         this.ageGroup = builder.ageGroup;
         this.classifications = builder.classifications;
-        this.ingredients = builder.ingredients;
+        this.categories = builder.ingredients;
     }
 
     public int getId() {
@@ -49,8 +48,8 @@ public final class Recipe {
         return classifications;
     }
 
-    public List<Ingredients> getIngredients() {
-        return ingredients;
+    public List<Category> getCategories() {
+        return categories;
     }
 
     public static class Builder {
@@ -61,7 +60,7 @@ public final class Recipe {
         private ParameterValue mealPattern;
         private ParameterValue ageGroup;
         private List<ParameterValue> classifications;
-        private List<Ingredients> ingredients;
+        private List<Category> ingredients;
 
         public Builder(int id) {
             this.id = id;
@@ -92,8 +91,8 @@ public final class Recipe {
             return this;
         }
 
-        public Builder ingredients(List<Ingredients> ingredients) {
-            this.ingredients = List.copyOf(ingredients);
+        public Builder categories(List<Category> categories) {
+            this.ingredients = List.copyOf(categories);
             return this;
         }
 
