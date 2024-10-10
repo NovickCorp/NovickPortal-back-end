@@ -9,6 +9,7 @@ public final class Recipe {
     private final int id;
     private final String name;
     private final String oid;
+    private final boolean isCreditable;
     private final ParameterValue mealPattern;
     private final ParameterValue ageGroup;
     private final List<ParameterValue> classifications;
@@ -18,6 +19,7 @@ public final class Recipe {
         this.id = builder.id;
         this.name = builder.name;
         this.oid = builder.oid;
+        this.isCreditable = builder.isCreditable;
         this.mealPattern = builder.mealPattern;
         this.ageGroup = builder.ageGroup;
         this.classifications = builder.classifications;
@@ -34,6 +36,10 @@ public final class Recipe {
 
     public String getOid() {
         return oid;
+    }
+
+    public boolean getIsCreditable() {
+        return isCreditable;
     }
 
     public ParameterValue getMealPattern() {
@@ -57,6 +63,7 @@ public final class Recipe {
         private int id;
         private String name;
         private String oid;
+        private boolean isCreditable;
         private ParameterValue mealPattern;
         private ParameterValue ageGroup;
         private List<ParameterValue> classifications;
@@ -73,6 +80,11 @@ public final class Recipe {
 
         public Builder oid(String oid) {
             this.oid = oid;
+            return this;
+        }
+
+        public Builder isCreditable(boolean isCreditable) {
+            this.isCreditable = isCreditable;
             return this;
         }
 

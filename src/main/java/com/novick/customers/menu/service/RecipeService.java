@@ -48,9 +48,11 @@ public final class RecipeService {
                                    var ingredients = recipeServiceSizeRepository.findAllByRecipesId(entity.getId());
                                    var classifications = recipeClassificationRepository.findAllByRecipesId(entity.getId());
                                    var scores = creditabilityRecipeRepository.findAllByIdRecipeId(entity.getId());
+
                                    return new Recipe.Builder(entity.getId())
                                            .name(entity.getName())
                                            .oid(entity.getOid())
+                                           .isCreditable(scores.stream().noneMatch(s -> s.getCreditabilityScore() != 1.0))
                                            .mealPattern(new ParameterValue(entity.getMealId(), mealsMap.get(entity.getMealId()).getName(), mealsMap.get(entity.getMealId()).getParameterName()))
                                            .ageGroup(new ParameterValue(entity.getAgeGroupId(), ageGroupsMap.get(entity.getAgeGroupId()).getName(), ageGroupsMap.get(entity.getAgeGroupId()).getParameterName()))
                                            .categories(getCategories(ingredients, scores))
