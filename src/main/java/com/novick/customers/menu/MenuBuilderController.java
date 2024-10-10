@@ -1,11 +1,10 @@
 package com.novick.customers.menu;
 
 import com.novick.customers.menu.entities.Category;
-import com.novick.customers.menu.models.Credibility;
+import com.novick.customers.menu.models.Creditability;
 import com.novick.customers.menu.models.Item;
 import com.novick.customers.menu.models.Options;
 import com.novick.customers.menu.entities.ServingSize;
-import com.novick.customers.menu.repositories.MealRepositorty;
 import com.novick.customers.menu.service.*;
 import com.novick.customers.util.Arithmetic;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +24,7 @@ public class MenuBuilderController {
     private final MealsService mealsService;
 
     private Map<Integer, Category> categories;
+    private Map<String, Integer> categoriesIds;
     private Map<Integer, String> unitsOfMeasurement;
 
     public MenuBuilderController(ServingSizeService servingSizeService, CategoriesService categoriesService, UnitsOfMeasurementService unitsOfMeasurementService, CreditabilityTableService creditabilityTableService, MealsService mealsService) {
@@ -34,6 +34,7 @@ public class MenuBuilderController {
         this.creditabilityTableService = creditabilityTableService;
 
         this.categories = categoriesService.categories();
+        this.categoriesIds = categories.entrySet().stream().collect(Collectors.toMap(entry -> entry.getValue().getName(), Map.Entry::getKey));
         this.unitsOfMeasurement = unitsOfMeasurementService.unitsOfMeasurement();
         this.mealsService = mealsService;
     }
@@ -44,7 +45,7 @@ public class MenuBuilderController {
     }
 
     @GetMapping("/menu-builder/{mealPattern}")
-    public Map<String, List<Item>> servingSizes(@PathVariable String mealPattern) {
+    public Map<Integer, List<Item>> servingSizes(@PathVariable String mealPattern) {
 
         var byCategory = groupByCategory(mealPattern);
         return byCategory.entrySet()
@@ -71,20 +72,20 @@ public class MenuBuilderController {
         throw new IllegalArgumentException("Invalid meal pattern: " + mealPattern);
     }
 
-    private Map<String, List<ServingSize>> groupByCategory(String mealPattern) {
-        var servingSizeByCategory = new TreeMap<String, List<ServingSize>>();
+    private Map<Integer, List<ServingSize>> groupByCategory(String mealPattern) {
+        var servingSizeByCategory = new TreeMap<Integer, List<ServingSize>>();
         allServingSizes().forEach(servingSize -> {
             if (!hasCategory(servingSize, mealPattern)) {
                 return;
             }
 
-            var category = categories.get(servingSize.getCategory(mealPattern)).getName();
-            if (!category.equals("Fruit/Vegetable")) {
-                var list = servingSizeByCategory.computeIfAbsent(category, k -> new ArrayList<>());
+            var category = categories.get(servingSize.getCategory(mealPattern));
+            if (!category.getName().equals("Fruit/Vegetable")) {
+                var list = servingSizeByCategory.computeIfAbsent(category.getId(), k -> new ArrayList<>());
                 list.add(servingSize);
             } else {
-                servingSizeByCategory.computeIfAbsent("Fruit", k -> new ArrayList<>()).add(servingSize);
-                servingSizeByCategory.computeIfAbsent("Vegetable", k -> new ArrayList<>()).add(servingSize);
+                servingSizeByCategory.computeIfAbsent(categoriesIds.get("Fruit"), k -> new ArrayList<>()).add(servingSize);
+                servingSizeByCategory.computeIfAbsent(categoriesIds.get("Vegetable"), k -> new ArrayList<>()).add(servingSize);
             }
         });
 
@@ -92,7 +93,7 @@ public class MenuBuilderController {
     }
 
     @GetMapping("/menu-builder/{mealPattern}/{ageGroup}")
-    public Map<String, List<Item>> servingSizes(@PathVariable String mealPattern, @PathVariable String ageGroup) {
+    public Map<Integer, List<Item>> servingSizes(@PathVariable String mealPattern, @PathVariable String ageGroup) {
 
         var byCategory = groupByCategory(mealPattern);
         return byCategory.entrySet()
@@ -108,12 +109,11 @@ public class MenuBuilderController {
                 );
     }
 
-    private List<Options> getOptions(ServingSize servingSize, String category, String mealPattern, String ageGroup) {
+    private List<Options> getOptions(ServingSize servingSize, int categoryId, String mealPattern, String ageGroup) {
         var size = servingSize.getMinimumViableServingSize();
         var uomId = servingSize.getMinimumServingSizeUomId();
         var value = servingSize.getCredibilityValue();
 
-        var categoryId = categories.entrySet().stream().filter(entry -> entry.getValue().getName().equals(category)).map(Map.Entry::getKey).findFirst().orElse(-1);
         var target = creditabilityTableService.getCreditabilityValue(categoryId, mealPattern, ageGroup);
 
         var count = 1;
@@ -122,7 +122,7 @@ public class MenuBuilderController {
         while (size <= 2.0) {
             System.out.println("name: " + value + " target: " + target + " score " + (value * 100.0 / target));
             var alternative = getAdditionalCredibility(servingSize, mealPattern, ageGroup, count);
-            var option = new Options(count++, String.format("%s %s", Arithmetic.toFractionString(size), unitsOfMeasurement.get(uomId)), new Credibility(category, size, target), alternative);
+            var option = new Options(count++, String.format("%s %s", Arithmetic.toFractionString(size), unitsOfMeasurement.get(uomId)), new Creditability(categoryId, size, target), alternative);
             list.add(option);
             size += servingSize.getMinimumViableServingSize();
         }
@@ -130,14 +130,14 @@ public class MenuBuilderController {
         return list;
     }
 
-    private Credibility getAdditionalCredibility(ServingSize servingSize, String mealPattern, String ageGroup, int count) {
+    private Creditability getAdditionalCredibility(ServingSize servingSize, String mealPattern, String ageGroup, int count) {
         if (!servingSize.getAdditionalCredibility() || !mealsService.mealMap().get(servingSize.getAdditionalCredibilityMealId()).getParameterName().equals(mealPattern)) {
             return null;
         }
 
-        var alternateCategory = categories.get(servingSize.getAdditionalCredibilityCategoryId()).getName();
+        var alternateCategory = categories.get(servingSize.getAdditionalCredibilityCategoryId());
         var value = servingSize.getAdditionalCredibilityValue();
         var target = creditabilityTableService.getCreditabilityValue(servingSize.getAdditionalCredibilityCategoryId(), mealPattern, ageGroup);
-        return new Credibility(alternateCategory, value * count, target);
+        return new Creditability(alternateCategory.getId(), value * count, target);
     }
 }
