@@ -15,6 +15,10 @@ public class Category {
 
     private String name;
 
+    private String parameterName;
+
+    private int priority;
+
     public int getId() {
         return id;
     }
@@ -29,6 +33,22 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getParameterName() {
+        return parameterName;
+    }
+
+    public void setParameterName(String parameterName) {
+        this.parameterName = parameterName;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 
     @Override
