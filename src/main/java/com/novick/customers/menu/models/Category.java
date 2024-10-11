@@ -1,6 +1,5 @@
 package com.novick.customers.menu.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Category {
@@ -31,5 +30,21 @@ public class Category {
 
     public List<Ingredients> getIngredients() {
         return ingredients;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCreditabilityScore(double creditabilityScore) {
+        this.creditabilityScore = creditabilityScore;
+    }
+
+    public void setIngredients(List<Ingredients> ingredients) {
+        this.ingredients = ingredients;
     }
 }

@@ -64,10 +64,14 @@ public final class RecipeService {
 
     private List<Category> getCategories(List<RecipeServingSize> ingredients, List<CreditabilityRecipes> scores) {
         var list = ingredients.stream()
-                              .map(i -> new Ingredients(i.getServingSizesId(), i.getCategoryId(), servingSizes.get(i.getServingSizesId()).getOptionValue(), i.getSize()))
+                              .map(i -> new Ingredients(i.getServingSizesId(), i.getCategoryId(), servingSizes.get(i.getServingSizesId()).getOptionValue(), i.getNumberOfItems(), i.getSize()))
                               .collect(Collectors.groupingBy(Ingredients::categoryId));
 
         var categoriesMap = categoriesService.categories();
         return scores.stream().map(i -> new Category(i.getId().getCategoryId(), categoriesMap.get(i.getId().getCategoryId()).getName(), i.getCreditabilityScore(), list.get(i.getId().getCategoryId()))).toList();
+    }
+
+    public com.novick.customers.menu.entities.Recipe save(com.novick.customers.menu.entities.Recipe recipe) {
+        return recipeRepository.save(recipe);
     }
 }
