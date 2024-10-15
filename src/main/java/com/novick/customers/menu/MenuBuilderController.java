@@ -66,7 +66,7 @@ public class MenuBuilderController {
             return Objects.nonNull(servingSize.getCategoryBreakfastId());
         } else if ("lunch".equals(mealPattern) || "supper".equals(mealPattern)) {
             return Objects.nonNull(servingSize.getCategoryLunchSupperId());
-        } else if ("snack".equals(mealPattern)) {
+        } else if ("snack".equals(mealPattern) || "am-snack".equals(mealPattern) || "pm-snack".equals(mealPattern)) {
             return Objects.nonNull(servingSize.getCategorySnackId());
         }
         throw new IllegalArgumentException("Invalid meal pattern: " + mealPattern);

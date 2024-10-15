@@ -1,13 +1,11 @@
 package com.novick.customers.landing.service;
 
-import com.novick.customers.landing.entities.Footer;
 import com.novick.customers.landing.models.*;
 import com.novick.customers.landing.repositories.*;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
-import java.time.LocalTime;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -56,6 +54,23 @@ public class LandingService {
 
         var footerData = new FooterData(footerLinks, terms, tutorial, footer.getCopyright(), footer.getLogoImage(), address);
 
-        return new Landing(header, mainContent, footerData);
+        var menuLinks = List.of(
+                new IconLink("/menu-planning/library", "Menu Library", "menu-library", "Select a menu from the predefined list, and customize according to your needs"),
+                new IconLink("/menu-planning/build", "Build a New Menu", "menu-new", "Create a menu completely from scratch"),
+                new IconLink("/menu-planning/my-menus", "My Menus", "menu-list", "A list of all the menus you have created")
+        );
+
+        var menuPlanning = new MenuPlanning("Let's Plan our Menu", menuLinks);
+
+        var items = List.of(
+                new TitleDescription("meal-patterns", "Choose Meal Patterns", "Meal patterns and age groups"),
+                new TitleDescription("create-recipes", "Create Your Recipes", "Create your own recipe for every meal pattern"),
+                new TitleDescription("menu-planner", "Menu Planner", "Plan your menu for every week"),
+                new TitleDescription("date-menu", "Date and Menu", "Choose a date and name your menu")
+        );
+        var steps = new Section("Steps", items);
+        var menuBuilder = new MenuBuilder("Build a Menu", Collections.singletonList(steps));
+
+        return new Landing(header, mainContent, footerData, menuPlanning, menuBuilder);
     }
 }
