@@ -35,6 +35,10 @@ public class Arithmetic {
             return "1 1/2";
         }
 
+        if (value == 2.0100000000000002) {
+            return "2";
+        }
+
         if (value == 1.0 || value == 2.0 || value == 3.0) {
             return Integer.toString((int) value);
         }

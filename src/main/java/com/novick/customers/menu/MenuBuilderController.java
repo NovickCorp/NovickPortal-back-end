@@ -109,35 +109,50 @@ public class MenuBuilderController {
                 );
     }
 
-    private List<Options> getOptions(ServingSize servingSize, int categoryId, String mealPattern, String ageGroup) {
-        var size = servingSize.getMinimumViableServingSize();
-        var uomId = servingSize.getMinimumServingSizeUomId();
-        var value = servingSize.getCredibilityValue();
+    private List<Options> getOptions(ServingSize ingredient, int categoryId, String mealPattern, String ageGroup) {
+        if (ingredient.getItem().equals("288790")) {
+            System.out.println();
+        }
+
+        var initialSize = ingredient.getMinimumViableServingSize();
+        var uomId = ingredient.getMinimumServingSizeUomId();
+        var value = ingredient.getCredibilityValue();
 
         var target = creditabilityTableService.getCreditabilityValue(categoryId, mealPattern, ageGroup);
 
         var count = 1;
         var list = new ArrayList<Options>();
 
-        while (size <= 2.0) {
-            System.out.println("name: " + value + " target: " + target + " score " + (value * 100.0 / target));
-            var alternative = getAdditionalCredibility(servingSize, mealPattern, ageGroup, count);
-            var option = new Options(count++, String.format("%s %s", Arithmetic.toFractionString(size), unitsOfMeasurement.get(uomId)), new Creditability(categoryId, size, target), alternative);
+        var score = (target == 0.0) ? 1.0 : (value / target);
+        var alternativeScore = getAdditionalCredibility(ingredient, mealPattern, ageGroup);
+        System.out.printf("Id %s %s %s-%s Target %.3f Value %.3f Ptc. %.3f %n", ingredient.getItem(), categories.get(ingredient.getCategory(mealPattern)), mealPattern, ageGroup, value, target, score);
+
+        var servingSize = 0.0;
+        while (servingSize < 2.0) {
+            servingSize += initialSize;
+            var option = new Options(count, String.format("%s %s", Arithmetic.toFractionString(servingSize), unitsOfMeasurement.get(uomId)), getCreditability(categoryId, score, count), getCreditability(ingredient.getAdditionalCredibilityCategoryId(), alternativeScore, count));
             list.add(option);
-            size += servingSize.getMinimumViableServingSize();
+            ++count;
         }
 
         return list;
     }
 
-    private Creditability getAdditionalCredibility(ServingSize servingSize, String mealPattern, String ageGroup, int count) {
+    private Creditability getCreditability(Integer categoryId, Double baseScore, int count) {
+        if (baseScore == null || categories.get(categoryId).getName().equals("Extra")) {
+            return null;
+        }
+
+        return new Creditability(categoryId, baseScore * count);
+    }
+
+    private Double getAdditionalCredibility(ServingSize servingSize, String mealPattern, String ageGroup) {
         if (!servingSize.getAdditionalCredibility() || !mealsService.mealMap().get(servingSize.getAdditionalCredibilityMealId()).getParameterName().equals(mealPattern)) {
             return null;
         }
 
-        var alternateCategory = categories.get(servingSize.getAdditionalCredibilityCategoryId());
         var value = servingSize.getAdditionalCredibilityValue();
         var target = creditabilityTableService.getCreditabilityValue(servingSize.getAdditionalCredibilityCategoryId(), mealPattern, ageGroup);
-        return new Creditability(alternateCategory.getId(), value * count, target);
+        return value / target;
     }
 }

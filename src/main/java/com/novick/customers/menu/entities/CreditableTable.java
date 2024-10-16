@@ -141,18 +141,18 @@ public class CreditableTable {
         return "CreditableTable{" +
                 "item=" + id +
                 ", categoryId=" + categoryId +
-                ", breakfastAgesOneToTwo=" + breakfastAgesOneToTwo +
-                ", breakfastAgesThreeToFive=" + breakfastAgesThreeToFive +
-                ", breakfastAgesSixToEighteen=" + breakfastAgesSixToEighteen +
-                ", breakfastAdult=" + breakfastAdult +
-                ", lunchSupperAgesOneToTwo=" + lunchSupperAgesOneToTwo +
-                ", lunchSupperAgesThreeToFive=" + lunchSupperAgesThreeToFive +
-                ", lunchSupperAgesSixToEighteen=" + lunchSupperAgesSixToEighteen +
-                ", lunchSupperAdult=" + lunchSupperAdult +
-                ", snackAgesOneToTwo=" + snackAgesOneToTwo +
-                ", snackAgesThreeToFive=" + snackAgesThreeToFive +
-                ", snackAgesSixToEighteen=" + snackAgesSixToEighteen +
-                ", snackAdult=" + snackAdult +
+                ", Breakfast | Ages 1-2=" + breakfastAgesOneToTwo +
+                ", Breakfast | Ages 3-5=" + breakfastAgesThreeToFive +
+                ", Breakfast | Ages 6-18=" + breakfastAgesSixToEighteen +
+                ", Breakfast | Adult=" + breakfastAdult +
+                ", Lunch/Supper | Ages 1-2=" + lunchSupperAgesOneToTwo +
+                ", Lunch/Supper | Ages 3-5=" + lunchSupperAgesThreeToFive +
+                ", Lunch/Supper | Ages 6-18=" + lunchSupperAgesSixToEighteen +
+                ", Lunch/Supper | Adult=" + lunchSupperAdult +
+                ", Snack | Ages 1-2=" + snackAgesOneToTwo +
+                ", Snack | Ages 3-5=" + snackAgesThreeToFive +
+                ", Snack | Ages 6-18=" + snackAgesSixToEighteen +
+                ", Snack | Adult=" + snackAdult +
                 '}';
     }
 }
