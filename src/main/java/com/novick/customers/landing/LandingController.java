@@ -2,6 +2,7 @@ package com.novick.customers.landing;
 
 import com.novick.customers.landing.models.Landing;
 import com.novick.customers.landing.service.LandingService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

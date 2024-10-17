@@ -1,0 +1,27 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="customers-0.0.1-SNAPSHOT.jar" type="JarApplication">
+    <extension name="net.ashald.envfile">
+      <option name="IS_ENABLED" value="true" />
+      <option name="IS_SUBST" value="false" />
+      <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+      <option name="IS_IGNORE_MISSING_FILES" value="false" />
+      <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+      <ENTRIES>
+        <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+      </ENTRIES>
+    </extension>
+    <option name="JAR_PATH" value="$PROJECT_DIR$/target/customers-0.0.1-SNAPSHOT.jar" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <option name="ALTERNATIVE_JRE_PATH" value="openjdk-23" />
+    <envs>
+      <env name="AZURE_MYSQL_RESOURCE_GROUP" value="NovickPortal" />
+      <env name="AZURE_MYSQL_SUBSCRIPTION_ID" value="ad6acc79-29dc-48af-9575-526ab04ee95f" />
+      <env name="AZURE_MYSQL_URL" value="jdbc:mysql://novick-portal-db.privatelink.mysql.database.azure.com:3306/novick_portal_dev?serverTimezone=UTC&amp;useSSL=true&amp;requireSSL=false" />
+      <env name="KEY_VAULT_ENDPOINT" value="https://novickportal-db-vault.vault.azure.net/" />
+      <env name="KEY_VAULT_RESOURCE_GROUP" value="NovickPortal" />
+      <env name="AZURE_MYSQL_PASSWORD" value="45vE09LfY!K@rsspC^Wp" />
+      <env name="AZURE_MYSQL_USERNAME" value="NovickAdm" />
+    </envs>
+    <method v="2" />
+  </configuration>
+</component>

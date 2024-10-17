@@ -1,0 +1,50 @@
+package com.novick.customers.menu.entities;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "age_groups")
+public class AgeGroup {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private String name;
+
+    private String parameterName;
+
+    private int priority;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getParameterName() {
+        return parameterName;
+    }
+
+    public void setParameterName(String parameterName) {
+        this.parameterName = parameterName;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+}

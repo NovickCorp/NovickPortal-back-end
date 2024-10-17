@@ -1,0 +1,3 @@
+spring:
+  datasource:
+    url: ${AZURE_MYSQL_URL}

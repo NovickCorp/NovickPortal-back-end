@@ -3,11 +3,12 @@ package com.novick.customers.landing.entities;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "header")
 public class Header {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
     @Column(name="logoImage")
     private String logoImage;
     @Column(name="logoHomeLink")
@@ -17,7 +18,7 @@ public class Header {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

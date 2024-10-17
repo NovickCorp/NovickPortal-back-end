@@ -9,6 +9,7 @@ public final class HeaderLinks {
     private final String text;
     private final String icon;
     private final int priority;
+    private final String dummyUrl;
 
     public HeaderLinks(com.novick.customers.landing.entities.HeaderLinks headerLinks) {
         this.id = headerLinks.getId();
@@ -16,6 +17,7 @@ public final class HeaderLinks {
         this.text = headerLinks.getText();
         this.icon = headerLinks.getIcon();
         this.priority = headerLinks.getPriority();
+        this.dummyUrl = headerLinks.getDummyUrl();
     }
 
     public long getId() {
@@ -36,5 +38,9 @@ public final class HeaderLinks {
 
     public int getPriority() {
         return priority;
+    }
+
+    public String getDummyUrl() {
+        return dummyUrl;
     }
 }

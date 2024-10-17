@@ -13,6 +13,7 @@ public class HeaderLinks {
     private String text;
     private String icon;
     private int priority;
+    private String dummyUrl;
 
     public long getId() {
         return id;
@@ -52,5 +53,13 @@ public class HeaderLinks {
 
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    public String getDummyUrl() {
+        return dummyUrl;
+    }
+
+    public void setDummyUrl(String dummyUrl) {
+        this.dummyUrl = dummyUrl;
     }
 }

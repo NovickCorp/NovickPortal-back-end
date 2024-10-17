@@ -1,27 +1,14 @@
 package com.novick.customers.landing.models;
 
-public class Landing {
+import java.util.Objects;
 
-    private Header header;
-    private MainContent mainContent;
-    private Footer footer;
+public record Landing(Header header, MainContent dashboard, FooterData footer, MenuPlanning menuPlanning, MenuBuilder menuBuilder) {
 
-    public Landing(Header header, MainContent mainContent, Footer footer) {
-        this.header = header;
-        this.mainContent = mainContent;
-        this.footer = footer;
+    public Landing {
+        Objects.requireNonNull(header);
+        Objects.requireNonNull(dashboard);
+        Objects.requireNonNull(footer);
+        Objects.requireNonNull(menuPlanning);
+        Objects.requireNonNull(menuBuilder);
     }
-
-    public Header getHeader() {
-        return header;
-    }
-
-    public MainContent getMainContent() {
-        return mainContent;
-    }
-
-    public Footer getFooter() {
-        return footer;
-    }
-
 }
