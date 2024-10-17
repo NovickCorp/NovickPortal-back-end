@@ -94,7 +94,6 @@ public class MenuBuilderController {
 
     @GetMapping("/menu-builder/{mealPattern}/{ageGroup}")
     public Map<Integer, List<Item>> servingSizes(@PathVariable String mealPattern, @PathVariable String ageGroup) {
-
         var byCategory = groupByCategory(mealPattern);
         return byCategory.entrySet()
                 .stream()
@@ -110,10 +109,6 @@ public class MenuBuilderController {
     }
 
     private List<Options> getOptions(ServingSize ingredient, int categoryId, String mealPattern, String ageGroup) {
-        if (ingredient.getItem().equals("288790")) {
-            System.out.println();
-        }
-
         var initialSize = ingredient.getMinimumViableServingSize();
         var uomId = ingredient.getMinimumServingSizeUomId();
         var value = ingredient.getCredibilityValue();

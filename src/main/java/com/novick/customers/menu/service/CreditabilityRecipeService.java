@@ -16,4 +16,8 @@ public class CreditabilityRecipeService {
     public CreditabilityRecipes save(CreditabilityRecipes creditabilityRecipes) {
         return creditabilityRecipeRepository.save(creditabilityRecipes);
     }
+
+    public void deleteAllByRecipeId(int recipeId) {
+        creditabilityRecipeRepository.deleteAllByIdRecipeId(recipeId);
+    }
 }

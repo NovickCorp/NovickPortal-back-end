@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,6 +40,10 @@ public final class RecipeService {
         this.mealsMap = mealsService.mealMap();
         this.ageGroupsMap = ageGroupService.ageGroupMap();
         this.servingSizes = servingSizeService.servingSizeMap();
+    }
+
+    public Optional<com.novick.customers.menu.entities.Recipe> findById(int id) {
+        return recipeRepository.findById(id);
     }
 
     public List<Recipe> findAllByOid(String oid) {
@@ -73,5 +78,9 @@ public final class RecipeService {
 
     public com.novick.customers.menu.entities.Recipe save(com.novick.customers.menu.entities.Recipe recipe) {
         return recipeRepository.save(recipe);
+    }
+
+    public void deleteById(int id) {
+        recipeRepository.deleteById(id);
     }
 }

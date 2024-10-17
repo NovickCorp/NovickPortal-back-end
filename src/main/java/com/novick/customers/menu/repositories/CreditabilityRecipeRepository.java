@@ -8,5 +8,6 @@ import java.util.List;
 public interface CreditabilityRecipeRepository extends JpaRepository<CreditabilityRecipes, Integer> {
 
     List<CreditabilityRecipes> findAllByIdRecipeId(int recipeId);
+    void deleteAllByIdRecipeId(int recipeId);
 
 }

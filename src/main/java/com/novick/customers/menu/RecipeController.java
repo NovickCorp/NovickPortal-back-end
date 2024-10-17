@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -37,6 +38,31 @@ public class RecipeController {
         return recipeService.findAllByOid(id);
     }
 
+    @Transactional
+    @DeleteMapping("/recipes/{id}/{recipeId}")
+    public ResponseEntity<String> deleteRecipe(@PathVariable String id, @PathVariable int recipeId) {
+        try {
+            var entity = recipeService.findById(recipeId);
+            if (entity.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+
+            var recipe = entity.get();
+            if (!Objects.equals(id, recipe.getOid())) {
+                return new ResponseEntity<>("This request is trying to delete a recipe that doesn't belong to the user", HttpStatus.BAD_REQUEST);
+            }
+
+            recipeClassificationService.deleteAllByRecipeId(recipeId);
+            creditabilityRecipeService.deleteAllByRecipeId(recipeId);
+            recipeService.deleteById(recipeId);
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Transactional
     @PostMapping("/recipes/{id}/{recipeId}")
     public ResponseEntity<String> updateRecipe(@RequestBody Recipe recipe, @PathVariable String id, @PathVariable int recipeId) {
         if (!recipe.getOid().equals(id)) {

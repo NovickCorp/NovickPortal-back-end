@@ -16,4 +16,8 @@ public class RecipeClassificationService {
     public RecipeClassification save(RecipeClassification recipeClassification) {
         return recipeClassificationRepository.save(recipeClassification);
     }
+
+    public void deleteAllByRecipeId(int recipeId) {
+        recipeClassificationRepository.deleteAllByRecipesId(recipeId);
+    }
 }
