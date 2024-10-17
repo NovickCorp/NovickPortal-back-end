@@ -8,5 +8,6 @@ import java.util.List;
 public interface RecipeServiceSizeRepository extends JpaRepository<RecipeServingSize, Integer> {
 
     List<RecipeServingSize> findAllByRecipesId(int recipesId);
+    void deleteAllByRecipesId(int recipesId);
 
 }

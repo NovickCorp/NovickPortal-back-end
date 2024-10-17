@@ -16,4 +16,8 @@ public class RecipeServingSizeService {
     public RecipeServingSize save(RecipeServingSize recipeServingSize) {
         return recipeServiceSizeRepository.save(recipeServingSize);
     }
+
+    public void deleteAllByRecipeId(int recipeId) {
+        recipeServiceSizeRepository.deleteAllByRecipesId(recipeId);
+    }
 }

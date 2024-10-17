@@ -54,6 +54,7 @@ public class RecipeController {
 
             recipeClassificationService.deleteAllByRecipeId(recipeId);
             creditabilityRecipeService.deleteAllByRecipeId(recipeId);
+            recipeServingSizeService.deleteAllByRecipeId(recipeId);
             recipeService.deleteById(recipeId);
 
             return new ResponseEntity<>(HttpStatus.OK);
