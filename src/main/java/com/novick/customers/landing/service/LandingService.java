@@ -69,7 +69,7 @@ public class LandingService {
                 new TitleDescription("date-menu", "Date and Menu", "Choose a date and name your menu")
         );
         var steps = new Section("Steps", items);
-        var menuBuilder = new MenuBuilder("Build a Menu", Collections.singletonList(steps));
+        var menuBuilder = new MenuBuilder("Build a Menu", steps);
 
         return new Landing(header, mainContent, footerData, menuPlanning, menuBuilder);
     }
