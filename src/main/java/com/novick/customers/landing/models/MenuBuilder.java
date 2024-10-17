@@ -3,11 +3,11 @@ package com.novick.customers.landing.models;
 import java.util.List;
 import java.util.Objects;
 
-public record MenuBuilder(String title, Section item) {
+public record MenuBuilder(String title, Section steps) {
 
     public MenuBuilder {
         Objects.requireNonNull(title);
-        Objects.requireNonNull(item);
+        Objects.requireNonNull(steps);
     }
 
 }
