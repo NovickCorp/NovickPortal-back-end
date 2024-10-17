@@ -182,7 +182,7 @@ public class ServingSize {
         return switch (mealPattern) {
             case "breakfast" -> getCategoryBreakfastId();
             case "lunch", "supper" -> getCategoryLunchSupperId();
-            case "snack" -> getCategorySnackId();
+            case "snack", "am-snack", "pm-snack" -> getCategorySnackId();
             default -> throw new IllegalStateException("Unexpected name: " + mealPattern);
         };
     }

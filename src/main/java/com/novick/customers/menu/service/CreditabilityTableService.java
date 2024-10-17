@@ -46,7 +46,7 @@ public class CreditabilityTableService {
                 case "adult" -> values.getLunchSupperAdult();
                 default -> throw new IllegalArgumentException("Invalid age group " + ageGroup);
             };
-        } else if ("snack".equals(mealPatterns)) {
+        } else if ("snack".equals(mealPatterns) || "am-snack".equals(mealPatterns) || "pm-snack".equals(mealPatterns)) {
             return switch (ageGroup) {
                 case "ages-1-2" -> values.getSnackAgesOneToTwo();
                 case "ages-3-5" -> values.getSnackAgesThreeToFive();

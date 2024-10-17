@@ -20,6 +20,8 @@ public class Recipe {
 
     private int ageGroupId;
 
+    private boolean isCreditable;
+
     public Integer getId() {
         return id;
     }
@@ -58,5 +60,13 @@ public class Recipe {
 
     public void setAgeGroupId(int ageGroupId) {
         this.ageGroupId = ageGroupId;
+    }
+
+    public boolean getIsCreditable() {
+        return isCreditable;
+    }
+
+    public void setIsCreditable(boolean creditable) {
+        isCreditable = creditable;
     }
 }

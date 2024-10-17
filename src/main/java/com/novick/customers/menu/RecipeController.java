@@ -127,6 +127,7 @@ public class RecipeController {
             recipeEntity.setName(recipe.getName());
             recipeEntity.setAgeGroupId(recipe.getAgeGroup().id());
             recipeEntity.setMealId(recipe.getMealPattern().id());
+            recipeEntity.setIsCreditable(recipe.getIsCreditable());
             var saved = recipeService.save(recipeEntity);
 
             recipe.getClassifications().forEach(classification -> {
