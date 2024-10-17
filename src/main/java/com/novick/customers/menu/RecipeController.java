@@ -80,8 +80,10 @@ public class RecipeController {
             recipeEntity.setName(recipe.getName());
             recipeEntity.setAgeGroupId(recipe.getAgeGroup().id());
             recipeEntity.setMealId(recipe.getMealPattern().id());
+            recipeEntity.setIsCreditable(recipe.getIsCreditable());
             recipeService.save(recipeEntity);
 
+            recipeClassificationService.deleteAllByRecipeId(recipe.getId());
             recipe.getClassifications().forEach(classification -> {
                 var classificationEntity = new RecipeClassification();
                 classificationEntity.setRecipesId(recipe.getId());
@@ -89,6 +91,7 @@ public class RecipeController {
                 recipeClassificationService.save(classificationEntity);
             });
 
+            creditabilityRecipeService.deleteAllByRecipeId(recipeId);
             recipe.getCategories().forEach(category -> {
                 var creditabilityEntity = new CreditabilityRecipes();
                 var cid = new CreditabilityRecipes.CreditabilityRecipeId();
@@ -99,6 +102,7 @@ public class RecipeController {
                 creditabilityRecipeService.save(creditabilityEntity);
             });
 
+            recipeServingSizeService.deleteAllByRecipeId(recipeId);
             recipe.getCategories().forEach(category -> {
                 Optional.ofNullable(category.getIngredients()).orElse(Collections.emptyList()).forEach(ingredient -> {
                     var recipeServingSizeEntity = new RecipeServingSize();
