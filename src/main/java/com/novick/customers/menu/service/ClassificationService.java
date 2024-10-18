@@ -2,6 +2,7 @@ package com.novick.customers.menu.service;
 
 import com.novick.customers.menu.entities.Classification;
 import com.novick.customers.menu.repositories.ClassificationRepository;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ public class ClassificationService {
         this.classificationRepository = classificationRepository;
     }
 
+    @Cacheable("classifications")
     public List<Classification> findAll() {
         return classificationRepository.findAll();
     }
