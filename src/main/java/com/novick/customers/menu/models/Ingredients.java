@@ -1,4 +1,4 @@
 package com.novick.customers.menu.models;
 
-public record Ingredients(int id, int categoryId, String name, int numberOfItems, String size) {
+public record Ingredients(Integer id, Integer categoryId, String name, Integer numberOfItems, String size) {
 }

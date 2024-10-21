@@ -141,7 +141,14 @@ public class RecipeController {
                 recipeClassificationService.save(classificationEntity);
             });
 
-            recipe.getCategories().forEach(category -> {
+            var recipeCategories = recipe.getCategories();
+            var categories = recipeCategories.stream()
+                                             .filter(category -> category.getIngredients()
+                                                                         .stream()
+                                                                         .noneMatch(ingredient -> Objects.isNull(ingredient.id())))
+                                             .toList();
+
+            categories.forEach(category -> {
                 var creditabilityEntity = new CreditabilityRecipes();
                 var id = new CreditabilityRecipes.CreditabilityRecipeId();
                 id.setRecipeId(saved.getId());
@@ -151,7 +158,7 @@ public class RecipeController {
                 creditabilityRecipeService.save(creditabilityEntity);
             });
 
-            recipe.getCategories().forEach(category -> {
+            categories.forEach(category -> {
                 Optional.ofNullable(category.getIngredients()).orElse(Collections.emptyList()).forEach(ingredient -> {
                     var recipeServingSizeEntity = new RecipeServingSize();
                     recipeServingSizeEntity.setRecipesId(saved.getId());
