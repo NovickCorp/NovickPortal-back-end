@@ -80,11 +80,6 @@ public class MenuBuilderController {
             }
 
             var category = categories.get(servingSize.getCategory(mealPattern));
-            if (category == null) {
-                System.out.println(servingSize.getItem());
-                return;
-            }
-
             if (!category.getName().equals("Fruit/Vegetable")) {
                 var list = servingSizeByCategory.computeIfAbsent(category.getId(), k -> new ArrayList<>());
                 list.add(servingSize);
@@ -125,7 +120,6 @@ public class MenuBuilderController {
 
         var score = (target == 0.0) ? 1.0 : (value / target);
         var alternativeScore = getAdditionalCredibility(ingredient, mealPattern, ageGroup);
-        System.out.printf("Id %s %s %s-%s Target %.3f Value %.3f Ptc. %.3f %n", ingredient.getItem(), categories.get(ingredient.getCategory(mealPattern)), mealPattern, ageGroup, value, target, score);
 
         var servingSize = 0.0;
         while (servingSize < 2.0) {

@@ -27,10 +27,10 @@ public class CategoriesService {
     }
 
     public Map<Integer, Category> categories() {
-        return findAll().stream().collect(Collectors.toMap(Category::getId, Function.identity()));
+        return categoriesRepository.findAll(Sort.by(Sort.Direction.ASC, "priority")).stream().collect(Collectors.toMap(Category::getId, Function.identity()));
     }
 
     public Map<String, Category> categoriesByName() {
-        return findAll().stream().collect(Collectors.toMap(Category::getName, Function.identity()));
+        return categoriesRepository.findAll(Sort.by(Sort.Direction.ASC, "priority")).stream().collect(Collectors.toMap(Category::getName, Function.identity()));
     }
 }
