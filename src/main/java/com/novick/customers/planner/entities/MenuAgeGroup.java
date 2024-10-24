@@ -13,13 +13,13 @@ public class MenuAgeGroup {
     private int id;
 
     private int menuId;
-    private int ageGroupId;
+    private int ageGroupsId;
     private int servings;
 
-    public static MenuAgeGroup create(int menuId, int ageGroupId, int servings) {
+    public static MenuAgeGroup create(int menuId, int ageGroupsId, int servings) {
         var entity = new MenuAgeGroup();
         entity.setMenuId(menuId);
-        entity.setAgeGroupId(ageGroupId);
+        entity.setAgeGroupsId(ageGroupsId);
         entity.setServings(servings);
         return entity;
     }
@@ -40,12 +40,12 @@ public class MenuAgeGroup {
         this.menuId = menuId;
     }
 
-    public int getAgeGroupId() {
-        return ageGroupId;
+    public int getAgeGroupsId() {
+        return ageGroupsId;
     }
 
-    public void setAgeGroupId(int ageGroupId) {
-        this.ageGroupId = ageGroupId;
+    public void setAgeGroupsId(int ageGroupId) {
+        this.ageGroupsId = ageGroupId;
     }
 
     public int getServings() {
