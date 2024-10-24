@@ -38,7 +38,7 @@ public final class RecipeService {
         this.categoriesService = categoriesService;
 
         this.mealsMap = mealsService.mealMap();
-        this.ageGroupsMap = ageGroupService.ageGroupMap();
+        this.ageGroupsMap = ageGroupService.ageGroupById();
         this.servingSizes = servingSizeService.servingSizeMap();
     }
 

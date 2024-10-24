@@ -20,12 +20,15 @@ public class AgeGroupService {
         this.ageGroupRepository = ageGroupRepository;
     }
 
-    @Cacheable("ageGroups")
     public List<AgeGroup> findAll() {
         return ageGroupRepository.findAll(Sort.by(Sort.Direction.ASC, "priority"));
     }
 
-    public Map<Integer, AgeGroup> ageGroupMap() {
+    public Map<Integer, AgeGroup> ageGroupById() {
         return findAll().stream().collect(Collectors.toMap(AgeGroup::getId, Function.identity()));
+    }
+
+    public Map<String, AgeGroup> ageGroupByParameterName() {
+        return findAll().stream().collect(Collectors.toMap(AgeGroup::getName, Function.identity()));
     }
 }
