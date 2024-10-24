@@ -80,6 +80,11 @@ public class MenuBuilderController {
             }
 
             var category = categories.get(servingSize.getCategory(mealPattern));
+            if (category == null) {
+                System.out.println(servingSize.getItem());
+                return;
+            }
+
             if (!category.getName().equals("Fruit/Vegetable")) {
                 var list = servingSizeByCategory.computeIfAbsent(category.getId(), k -> new ArrayList<>());
                 list.add(servingSize);
