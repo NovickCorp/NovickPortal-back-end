@@ -56,6 +56,10 @@ public class MenuPlannerController {
 
         var ages = new MealCalendar[] { calendar.ages1to2(), calendar.ages3to5(), calendar.ages6to18(), calendar.adult() };
         for (var age : ages) {
+            if (age == null) {
+                continue;
+            }
+
             var weeks = new WeekCalendar[] { age.week1(), age.week2(), age.week3(), age.week4() };
             for (var i = 0; i < weeks.length; i++) {
                 var week = weeks[i];
