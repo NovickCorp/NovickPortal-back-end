@@ -7,6 +7,7 @@ import com.novick.customers.menu.models.Recipe;
 import com.novick.customers.menu.service.CategoriesService;
 import com.novick.customers.menu.service.MealsService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -51,7 +52,7 @@ public class CreditabilityController {
 //
 //    If credibility exceeds on the two items selected and if other items are selected in addition to the two add the extra E sign to the credibility indication on the recipe header.
 //
-    @GetMapping("/creditability")
+    @PostMapping("/creditability")
     public Creditability isCreditability(@RequestBody Recipe recipe) {
         Map<Integer, Double> creditabilityPerCategory = new HashMap<>();
         recipe.getCategories().stream().forEach(c -> creditabilityPerCategory.put(c.getId(), c.getCreditabilityScore()));
