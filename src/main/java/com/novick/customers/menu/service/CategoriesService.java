@@ -22,12 +22,15 @@ public class CategoriesService {
         this.categoriesRepository = categoriesRepository;
     }
 
-    @Cacheable("categories")
     public List<Category> findAll() {
         return categoriesRepository.findAll(Sort.by(Sort.Direction.ASC, "priority")).stream().filter(c -> Objects.nonNull(c.getParameterName())).toList();
     }
 
     public Map<Integer, Category> categories() {
-        return categoriesRepository.findAll().stream().collect(Collectors.toMap(Category::getId, Function.identity()));
+        return findAll().stream().collect(Collectors.toMap(Category::getId, Function.identity()));
+    }
+
+    public Map<String, Category> categoriesByName() {
+        return findAll().stream().collect(Collectors.toMap(Category::getName, Function.identity()));
     }
 }

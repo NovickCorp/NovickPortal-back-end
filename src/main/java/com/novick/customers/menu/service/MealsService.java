@@ -28,4 +28,8 @@ public class MealsService {
     public Map<Integer, Meal> mealMap() {
         return findAll().stream().collect(Collectors.toMap(Meal::getId, Function.identity()));
     }
+
+    public Map<String, Meal> mealsByName() {
+        return findAll().stream().collect(Collectors.toMap(Meal::getName, Function.identity()));
+    }
 }
